@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Mundial</title>
+</head>
+<body>
+<label for="continentes">Elige un continente:</label>
+<select name="continentes" id="continentes">
+    {% for equipo in listado_equipos %}
+    <option value="{{equipo.continente}}">{{equipo.continente}}</option>
+    {% endfor %}
+</select>
+</br>
+<table style="border:1px solid black">
+    <tr>
+        <th style="border:1px solid black">Seleccion</th>
+        <th style="border:1px solid black">Continente</th>
+        <th style="border:1px solid black">Mundiales Ganados</th>
+    </tr>
+    {% for equipo in listado_equipos %}
+    <tr>
+        <td style="border:1px solid black">{{equipo.seleccion}}</td>
+        <td style="border:1px solid black">{{equipo.continente}}</td>
+        <td style="border:1px solid black">{{equipo.mundiales_ganados}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href={{last_page}}>Volver Atras</a>
+<a href="{% url 'add_seleccion' %}">Añadir Seleccion</a>
+</body>
+</html>
