@@ -49,12 +49,14 @@ def listar_jugadores(request):
 
     if request.method == 'POST':
         if request.POST.get('action') == 'filtrar':
+            jugadores = Jugador.objects
             nacionalidad = request.POST.get('nacionalidad_filtro')
             posicion = request.POST.get('posicion_filtro')
             if nacionalidad != "":
-                lista_jugadores = Jugador.objects.filter(nacionalidad=nacionalidad)
+                jugadores = jugadores.filter(nacionalidad=nacionalidad)
             if posicion != "":
-                lista_jugadores = Jugador.objects.filter(posicion=posicion)
+                jugadores = jugadores.filter(posicion=posicion)
+            lista_jugadores = jugadores.values()
 
     contexto = {"listado_jugadores": lista_jugadores, "listado_posiciones": ["del", "def", "port", "med"],
                 "listado_nacionalidades": ["esp", "ger", "bra", "fra"]}
