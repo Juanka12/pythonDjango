@@ -34,6 +34,7 @@ def listar_equipos(request):
 def add_seleccion(request):
     return render(request, "add_seleccion.html")
 
+#Nuevo ejercicio tabla de jugadores
 
 JugadorForm = modelform_factory(Jugador, exclude=[])
 
