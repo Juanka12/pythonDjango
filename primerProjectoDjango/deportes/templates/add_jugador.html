@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Jugador</title>
+</head>
+<body>
+    <h1>Añadir Jugador</h1>
+    <form action="add" method="POST">
+        {%csrf_token%}
+        <table>{{jugador_form}}</table>
+        <input type="hidden" name="id" value={{id}}>
+        <input type="submit" value="Guardar">
+    </form>
+    <h2 style="color: green">{{mensaje}}</h2>
+    <a href="/deportes/jugadores">Volver a jugadores</a>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jugadores</title>
+</head>
+<body>
+  <h1>Jugadores</h1>
+  <form action="jugadores" method="post">
+    {%csrf_token%}
+      <fieldset>
+          <legend>Filtro</legend>
+          <label>
+              Nacionalidad: <input type="text" name="nacionalidad_filtro" list="nacionalidades">
+              <datalist id="nacionalidades">
+                {% for nacion in listado_nacionalidades %}
+                  <option value={{nacion}}></option>
+                {% endfor %}
+              </datalist>
+          </label>
+          <label>
+              Posicion: <input type="text" name="posicion_filtro" list="posiciones">
+              <datalist id="posiciones">
+                {% for pos in listado_posiciones %}
+                  <option value={{pos}}></option>
+                {% endfor %}
+              </datalist>
+          </label>
+      </fieldset>
+      <input type="hidden" name="action" value="filtrar">
+      <input type="submit" value="Filtrar">
+  </form>
+  <table>
+      <tr>
+          <th style="border:1px solid black"><a href="jugadores?orderby=equipo">Equipo</a></th>
+          <th style="border:1px solid black"><a href="jugadores?orderby=nombre">Nombre</a></th>
+          <th style="border:1px solid black"><a href="jugadores?orderby=edad">Edad</a></th>
+          <th style="border:1px solid black"><a href="jugadores?orderby=nacionalidad">Nacionalidad</a></th>
+          <th style="border:1px solid black"><a href="jugadores?orderby=posicion">Posicion</a></th>
+      </tr>
+      {% for jugador in listado_jugadores %}
+      <tr>
+          <th style="border:1px solid black">{{jugador.equipo}}</th>
+          <th style="border:1px solid black">{{jugador.nombre}}</th>
+          <th style="border:1px solid black">{{jugador.edad}}</th>
+          <th style="border:1px solid black">{{jugador.nacionalidad}}</th>
+          <th style="border:1px solid black">{{jugador.posicion}}</th>
+          <th style="border:1px solid black">
+              <a href="jugadores?id={{jugador.id}}"
+                style="background: url(../static/admin/img/icon-deletelink.svg) 0 50% no-repeat;
+                padding-left: 16px; text-decoration: none">Eliminar</a>
+          </th>
+          <th style="border:1px solid black">
+              <a href="jugadores/add?id={{jugador.id}}"
+                style="background: url(../static/admin/img/icon-changeLink.svg) 0 50% no-repeat;
+                padding-left: 16px; text-decoration: none">Modificar</a>
+          </th>
+      </tr>
+      {% endfor %}
+  </table>
+  <a href="jugadores/add"><button>Nuevo Jugador</button></a>
+</body>
+</html>

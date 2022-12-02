@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Cliente</title>
+</head>
+<body>
+    <h1>Añadir nuevo cliente</h1>
+    <form action="/clientes/add" method="POST">
+        {%csrf_token%}
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br>
+        <label for="apellidos">apellidos:</label><br>
+        <input type="text" id="apellidos" name="apellidos"><br>
+        <label for="dni">DNI:</label><br>
+        <input type="text" id="dni" name="dni"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
